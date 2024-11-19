@@ -1,5 +1,6 @@
 package com.udea.automationauthcalidade2e.stepdefinitions.signup;
 
+import com.udea.automationauthcalidade2e.questions.MessageVerification;
 import com.udea.automationauthcalidade2e.tasks.FillSignUpData;
 import com.udea.automationauthcalidade2e.tasks.OpenUrl;
 import com.udea.automationauthcalidade2e.utils.Constants;
@@ -16,10 +17,14 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import org.openqa.selenium.WebDriver;
 
+import static org.hamcrest.Matchers.equalTo;
+
+
 import java.util.List;
 import java.util.Map;
 
 import static com.udea.automationauthcalidade2e.utils.Constants.sleep;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 
 public class SignUpStepDefinitions {
@@ -61,8 +66,17 @@ public class SignUpStepDefinitions {
                     );
                 }
         );
-        sleep(6000);
+        sleep(1000);
     }
 
+    @Then("I should see {string}")
+    public void iShouldSeeASuccessMessage(String expectedMessage) {
+        sleep(2000);
+        user.should(seeThat(
+                MessageVerification.isDisplayed(),
+                equalTo(true)
+        ));
+    }
 
 }
+
