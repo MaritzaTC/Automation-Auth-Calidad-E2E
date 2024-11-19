@@ -69,7 +69,7 @@ public class SignUpStepDefinitions {
         sleep(1000);
     }
 
-    @Then("I should see {string}")
+    @Then("The system should display {string}")
     public void iShouldSeeASuccessMessage(String expectedMessage) {
         sleep(2000);
         user.should(seeThat(
