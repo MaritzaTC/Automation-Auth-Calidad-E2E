@@ -1,5 +1,7 @@
 package com.udea.automationauthcalidade2e.stepdefinitions.login;
 
+import com.udea.automationauthcalidade2e.questions.MessageError;
+import com.udea.automationauthcalidade2e.questions.MessageVerification;
 import com.udea.automationauthcalidade2e.tasks.FillCredentialsData;
 import com.udea.automationauthcalidade2e.tasks.OpenUrl;
 import com.udea.automationauthcalidade2e.utils.Constants;
@@ -24,6 +26,8 @@ import static com.udea.automationauthcalidade2e.utils.Constants.sleep;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginStepDefinitions {
     //Actor
@@ -68,6 +72,35 @@ public class LoginStepDefinitions {
         sleep(6000);
     }
 
+    @Then("The user must enter the welcome page")
+    public void theUserMustEnterTheWelcomePage() {
+        String currentUrl = theDriver.getCurrentUrl();
+        String expectedUrl = Constants.URL_HOME + EndPoints.URL_WELCOME;
+        assertEquals(expectedUrl, currentUrl);
+    }
 
+    @When("the user enters invalid credentials")
+    public void theUserEntersInvalidCredentials(DataTable dataTable) {
+        List<Map<String, String>> credentials = dataTable.asMaps(String.class, String.class);
 
+        credentials.forEach(
+                userA -> {
+                    user.attemptsTo(
+                            FillCredentialsData.withData(
+                                    userA.get("email"),
+                                    userA.get("password")
+                            ));
+                });
+
+        sleep(6000);
+    }
+
+    @Then("The user must see an error message")
+    public void theUserMustSeeAnErrorMessage() {
+        sleep(2000);
+        user.should(seeThat(
+                MessageError.isDisplayed(),
+                equalTo(true)
+        ));
+    }
 }

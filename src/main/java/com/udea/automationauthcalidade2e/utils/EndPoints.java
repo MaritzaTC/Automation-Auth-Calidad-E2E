@@ -8,4 +8,6 @@ public class EndPoints {
     public static final String URL_LOGIN = "login";
 
     public static final String URL_SIGNUP = "signup";
+
+    public static final String URL_WELCOME = "welcome";
 }
