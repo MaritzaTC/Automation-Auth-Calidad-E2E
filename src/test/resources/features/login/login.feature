@@ -13,4 +13,3 @@ Feature: Login
     |email|password|
     |maritza.tabarezc@udea.edu.co|1234|
 
-    

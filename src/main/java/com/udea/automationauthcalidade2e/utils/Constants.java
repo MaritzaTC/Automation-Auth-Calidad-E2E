@@ -7,9 +7,11 @@ public class Constants {
     private static final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
     public static final String URL_HOME = environmentVariables.getProperty("webdriver.base.url");
 
+
+
     public static void sleep (int time) {
         try {
-            Thread.sleep(time); // Pausa de 2 segundos
+            Thread.sleep(time);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

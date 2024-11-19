@@ -3,6 +3,7 @@ package com.udea.automationauthcalidade2e.stepdefinitions.login;
 import com.udea.automationauthcalidade2e.tasks.FillCredentialsData;
 import com.udea.automationauthcalidade2e.tasks.OpenUrl;
 import com.udea.automationauthcalidade2e.utils.Constants;
+import com.udea.automationauthcalidade2e.utils.EndPoints;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -46,7 +47,9 @@ public class LoginStepDefinitions {
 
     @Given("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
-        user.attemptsTo(OpenUrl.url(Constants.URL_HOME));
+        String loginPageUrl = Constants.URL_HOME + EndPoints.URL_LOGIN;
+        user.attemptsTo(OpenUrl.url(loginPageUrl));
+        //user.attemptsTo(OpenUrl.url(Constants.URL_HOME));
     }
 
     @When("the user enters valid credentials")
@@ -62,7 +65,7 @@ public class LoginStepDefinitions {
                             ));
                 });
 
-        sleep(1000);
+        sleep(6000);
     }
 
 
