@@ -31,7 +31,7 @@ Las pruebas están diseñadas para cubrir aspectos clave como:
 ## Requisitos
 
 - **Java 17** 
-- **Maven** para gestionar dependencias
+- **Gladle** para gestionar dependencias
 - **Serenity BDD** y **Cucumber** (utilizados para crear pruebas basadas en comportamiento)
 - Entorno de pruebas con la aplicación configurada para autenticación.
 
